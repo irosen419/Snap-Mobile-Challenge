@@ -104,4 +104,4 @@ Write your README as if it was for a production service. Include the following i
 Submitting
 ----------
 
-Submit your code as a git repository. Host it on GitHub (or wherever, public or private)
+Submit your code as a **separate** git repository, preferably on GitHub
