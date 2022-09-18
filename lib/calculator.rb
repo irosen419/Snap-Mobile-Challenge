@@ -1,9 +1,11 @@
 class Calculator
 
-  def initialize(current_value = 0, nums = [], operators = [])
-    @current_value = current_value
-    @nums = nums
-    @operators = operators
+  def initialize()
+    @current_value = 0
+    @nums = []
+    @operators = []
+    @validOperators = ['+', '-', '*', '/']
+    @touched = false
   end
 
   #begin the experience
@@ -24,20 +26,34 @@ class Calculator
 
       input_array = breakdown_user_input(user_input)
 
-      input_array.each do |value|
-        validNumber(value)
+      # if input is ONLY an operator and there are >=2 numbers previously input 
+      if input_array.length == 1 and @validOperators.include?(input_array[0])
+        if @nums.length >= 2
+          @current_value = calculate(@nums[-2], @nums[-1], input_array[0])
+          @nums.push(@current_value)
+          puts @current_value
+          input
+        end
+
+      # otherwise, input is long enough for more complex operations
+      else
+        input_array.each do |value|
+          validNumber(value)
+        end
+  
+        # iterate over nums array calculating each with next operator
+        @nums.each_with_index do |num, idx|
+          if idx == 0 || @operators.empty?
+            @current_value = num
+          else
+            @current_value = calculate(@current_value, num, @operators.shift)
+          end
+        end
+        puts @current_value
+        @touched = true
+        input
       end
 
-      # iterate over nums array calculating each with next operator
-      @nums.each_with_index do |num, idx|
-        if idx == 0 || @operators.empty?
-          @current_value = num
-        else
-          @current_value = calculate(@current_value, num, @operators.shift)
-        end
-      end
-      puts @current_value
-      input
     rescue NoMethodError, SystemExit, Interrupt
       quit
     end
@@ -61,9 +77,8 @@ class Calculator
 
   # validate operators
   def validOperator(value)
-    validOperators = ['+', '-', '*', '/']
-    
-    if validOperators.include?(value)
+
+    if @validOperators.include?(value)
       @operators.push(value)
     else
       puts "Invalid operation. Please try again."
