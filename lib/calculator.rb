@@ -104,20 +104,21 @@ class Calculator
 
 
   # quit the program with some flare
+  # https://www.asciiart.eu/electronics/calculators
   def quit
-    puts "\n\n  We are sorry to see you go!  "
-    puts "     Art by Joan G. Stark       "
-    puts "            |\\._                "
-    puts "            |  o o__             "
-    puts "             \\   _.3            "
-    puts "        ,    `) (               "
-    puts "        )\\   /__\\__            "
-    puts "       / /  / -._);_)           "
-    puts "      |  `\\/  \ __|\            "
-    puts "       \\  ;    ) / )           "
-    puts "       `\\|   /__/ /__          "
-    puts "     jgs `\\______)___)         "
-    puts "   Please come back again!      "
+    puts "\n\nWe are sorry to see you go!  "
+    puts ' __________'
+    puts '| ________ |'
+    puts '||12345678||'
+    puts '|""""""""""|'
+    puts '|[M|#|C][-]|'
+    puts '|[7|8|9][+]|'
+    puts '|[4|5|6][x]|'
+    puts '|[1|2|3][%]|'
+    puts '|[.|O|:][=]|'
+    puts ' ---------- hjw'
+    puts "Please come back again!      "
+
   end
 
 end
