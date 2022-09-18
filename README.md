@@ -1,7 +1,8 @@
 Hello and welcome to my CLI RPN Calculator!
 
 To get started, while you are in the top level of this repository, run
-  ```ruby bin/run.rb```
+  ``bundle install``
+  ``ruby bin/run.rb``
 
 After that, you will be able to type in your first input and use the calculator as you wish!
 
