@@ -13,8 +13,18 @@ class Calculator
   end
 
   def input
-    value = gets.chomp
-    validNumber(value)
+    user_input = gets.chomp
+    input_array = breakdown_user_input(user_input)
+
+    #validate each input
+    input_array.each do |value|
+      validNumber(value)
+    end
+  end
+
+  #splits user input into array
+  def breakdown_user_input(user_input)
+    input_array = user_input.split(" ")
   end
 
   def validNumber(value)
