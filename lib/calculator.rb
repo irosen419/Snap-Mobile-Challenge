@@ -5,19 +5,17 @@ class Calculator
     @nums = []
     @operators = []
     @validOperators = ['+', '-', '*', '/']
-    @touched = false
   end
 
   #begin the experience
   def start
-    puts @current_value
-    input()
+    show_current_value
   end
 
   #get user input and validate each input
   def input
     user_input = gets.strip!
-    
+
     begin
       if user_input == 'q'
         quit
@@ -31,8 +29,7 @@ class Calculator
         if @nums.length >= 2
           @current_value = calculate(@nums[-2], @nums[-1], input_array[0])
           @nums.push(@current_value)
-          puts @current_value
-          input
+          show_current_value
         end
 
       # otherwise, input is long enough for more complex operations
@@ -49,13 +46,13 @@ class Calculator
             @current_value = calculate(@current_value, num, @operators.shift)
           end
         end
-        puts @current_value
-        @touched = true
-        input
+        show_current_value
       end
 
+    # quit after any other input (i.e. CTRL+C, CTRL+D)
     rescue NoMethodError, SystemExit, Interrupt
       quit
+      return
     end
   end
 
@@ -100,6 +97,13 @@ class Calculator
     end
   end
 
+  def show_current_value
+    puts @current_value
+    input
+  end
+
+
+  # quit the program with some flare
   def quit
     puts "\n\n  We are sorry to see you go!  "
     puts "     Art by Joan G. Stark       "
